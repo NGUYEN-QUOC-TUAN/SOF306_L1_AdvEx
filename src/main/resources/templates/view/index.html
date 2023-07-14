@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PEOPLE_DEMO</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body>
+<header>
+    <div class="tieuDe" style="text-align: center">
+        <h3>LIST PEOPLE</h3>
+    </div>
+</header>
+<section>
+    <div class="container">
+        <br>
+        <hr>
+        <a th:href="@{/people/readfile}" class="btn btn-success">ADD VÔ FILE TỔNG</a>
+        <br>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">NAME</th>
+                <th scope="col">GENDER</th>
+                <th scope="col">COUNTRY</th>
+                <th scope="col">SALARY</th>
+                <th scope="col">SOLOGAN</th>
+                <th scope="col">ACTION</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="people, state:${listPeople.getContent()}">
+                <td th:text="*{state.index + 1}"></td>
+                <td th:text="*{people.first_name + ' ' + people.last_name}"></td>
+                <td th:text="*{people.gender}"></td>
+                <td th:text="*{people.country}"></td>
+                <td th:text="*{people.salary}"></td>
+                <td th:text="*{people.slogan}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="pagination">
+<!--            <ul th:each="people, state : ${listPeople.getContent()}">-->
+<!--                <li th:if="${state.index < 10}">-->
+<!--                    <a th:href="@{|/people/view?page=${state.index + 1}|}" th:text="*{state.index + 1}"></a>-->
+<!--                </li>-->
+<!--            </ul>-->
+            <br>
+        </div>
+        <div class="phanTrang" style="text-align: center">
+            <a th:href="@{|/people/view?page=${listPeople.getNumber() + 1 - 1}|}" th:text="PREOUS"></a>
+            <a th:text="${listPeople.getNumber() + 1}"></a>/<a th:text="${listPeople.getTotalPages()}"></a>
+            <a th:href="@{|/people/view?page=${listPeople.getNumber() + 1 + 1}|}" th:text="NEXT"></a>
+        </div>
+    </div>
+</section>
+<footer>
+
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+        integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+        crossorigin="anonymous"></script>
+</body>
+</html>
